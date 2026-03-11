@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="logo-icon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta
+      name="description"
+      content="Pulse - Your One-Stop Ad Management Solution"
+    />
+    <meta name="keywords" content="ecommerce, shopping, online store, retail, fashion, electronics" />
+    <meta name="author" content="Pulse Ad Management Platform" />
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Pulse Ad Management Platform" />
+    <meta property="og:description" content="Pulse Ad Management Platform" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/og-image.jpg" />
+    
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Pulse Ad Management Platform" />
+    <meta name="twitter:description" content="Pulse Ad Management Platform" />
+    <meta name="twitter:image" content="/twitter-image.jpg" />
+    
+    <link rel="apple-touch-icon" href="/photo-logo.png" />
+    
+    <!-- Preconnect to external domains for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts - Modern, clean typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/styles/global.css" />
+    <style>
+      /* Reset and base styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-color: #ffffff;
+        color: #111111;
+        line-height: 1.5;
+        overflow: auto;
+      }
+
+      /* Minimalist scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      
+      ::-webkit-scrollbar-track {
+        background: #f5f5f5;
+      }
+      
+      ::-webkit-scrollbar-thumb {
+        background: #dddddd;
+      }
+      
+      ::-webkit-scrollbar-thumb:hover {
+        background: #cccccc;
+      }
+
+      /* Loading spinner - minimal design */
+      .loading-spinner {
+        border: 2px solid #f0f0f0;
+        border-top: 2px solid #111111;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 0.8s linear infinite;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      /* Loading screen */
+      #initial-loading {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #ffffff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.3s ease;
+      }
+
+      #initial-loading p {
+        margin-top: 20px;
+        color: #666666;
+        font-size: 14px;
+        font-weight: 400;
+        letter-spacing: 0.3px;
+      }
+
+      /* Logo animation */
+      .loading-logo {
+        margin-bottom: 20px;
+        font-size: 24px;
+        font-weight: 500;
+        color: #111111;
+        letter-spacing: -0.5px;
+      }
+
+      .loading-logo span {
+        font-weight: 300;
+        color: #666666;
+      }
+
+      /* No script message - clean design */
+      .noscript-message {
+        max-width: 400px;
+        margin: 40px auto;
+        padding: 32px;
+        background: #ffffff;
+        border: 1px solid #eaeaea;
+        text-align: center;
+      }
+
+      .noscript-message h2 {
+        font-size: 20px;
+        font-weight: 500;
+        color: #111111;
+        margin-bottom: 16px;
+      }
+
+      .noscript-message p {
+        font-size: 14px;
+        color: #666666;
+        margin-bottom: 12px;
+        line-height: 1.6;
+      }
+
+      .noscript-message .icon {
+        font-size: 32px;
+        margin-bottom: 16px;
+        color: #111111;
+      }
+
+      /* Error message - clean design */
+      .error-message {
+        text-align: center;
+        max-width: 400px;
+        padding: 32px;
+        background: #ffffff;
+        border: 1px solid #eaeaea;
+      }
+
+      .error-message h2 {
+        font-size: 18px;
+        font-weight: 500;
+        color: #111111;
+        margin: 16px 0 8px;
+      }
+
+      .error-message p {
+        font-size: 14px;
+        color: #666666;
+        margin-bottom: 20px;
+      }
+
+      .error-message button {
+        padding: 10px 24px;
+        background: #111111;
+        color: #ffffff;
+        border: none;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      .error-message button:hover {
+        background: #333333;
+      }
+
+      /* Print styles */
+      @media print {
+        .no-print {
+          display: none !important;
+        }
+        
+        body {
+          background-color: #ffffff;
+        }
+      }
+
+      /* Selection color */
+      ::selection {
+        background: #111111;
+        color: #ffffff;
+      }
+      
+      ::-moz-selection {
+        background: #111111;
+        color: #ffffff;
+      }
+
+      /* Focus styles for accessibility */
+      :focus-visible {
+        outline: 2px solid #111111;
+        outline-offset: 2px;
+      }
+    </style>
+    
+    <title>Pulse | Ad Management Platform</title>
+  </head>
+  
+  <body style="background-color:#ffffff; color:#111111;">
+    <!-- No Script Message - Clean Design -->
+    <noscript>
+      <div class="noscript-message" style="margin: 40px auto; max-width: 400px; padding: 32px; background: #ffffff; border: 1px solid #eaeaea; text-align: center;">
+        <div class="icon" style="font-size: 32px; margin-bottom: 16px; color: #111111;">⚡</div>
+        <h2 style="font-size: 20px; font-weight: 500; color: #111111; margin-bottom: 16px;">JavaScript Required</h2>
+        <p style="font-size: 14px; color: #666666; margin-bottom: 12px; line-height: 1.6;">
+          Please enable JavaScript to experience the full features of Pulse.
+        </p>
+        <p style="font-size: 14px; color: #999999; margin-top: 16px;">
+          Modern ad management functionality requires JavaScript for optimal performance.
+        </p>
+      </div>
+    </noscript>
+    
+    <!-- Initial Loading Screen - Clean White Design -->
+    <div id="initial-loading">
+      <div class="loading-logo">
+      <span>Pulse</span>
+      </div>
+      <div class="loading-spinner"></div>
+      <p>Loading experience</p>
+    </div>
+    
+    <!-- Main React App Container - Pure White Background -->
+    <div id="root" style="background-color: #ffffff; min-height: 100vh;"></div>
+  
+    <script type="module" src="../pay_per_click_ad/src/main.tsx"></script>
+    <!-- Optimized Loading Screen Handler -->
+    <script>
+      (function() {
+        'use strict';
+        
+        // Configuration
+        const CONFIG = {
+          maxLoadTime: 3000, // 3 seconds max loading time
+          fadeOutDuration: 300 // 300ms fade out
+        };
+
+        // Cache DOM elements
+        const loadingElement = document.getElementById('initial-loading');
+        
+        if (!loadingElement) return;
+
+        // Function to hide loading screen with fade effect
+        const hideLoadingScreen = () => {
+          // Check if already hidden
+          if (loadingElement.style.display === 'none') return;
+          
+          // Add transition if not present
+          loadingElement.style.transition = `opacity ${CONFIG.fadeOutDuration}ms ease`;
+          loadingElement.style.opacity = '0';
+          
+          // Remove from DOM after fade
+          setTimeout(() => {
+            loadingElement.style.display = 'none';
+            // Clean up
+            document.body.style.overflow = 'auto';
+          }, CONFIG.fadeOutDuration);
+        };
+
+        // Show loading screen
+        const showLoadingScreen = () => {
+          loadingElement.style.display = 'flex';
+          loadingElement.style.opacity = '1';
+          document.body.style.overflow = 'hidden'; // Prevent scrolling while loading
+        };
+
+        // Check if React has loaded (by checking for root children)
+        const checkReactLoaded = () => {
+          const root = document.getElementById('root');
+          return root && root.children.length > 0;
+        };
+
+        // Monitor for React load
+        const monitorReactLoad = () => {
+          // If React is already loaded, hide immediately
+          if (checkReactLoaded()) {
+            hideLoadingScreen();
+            return;
+          }
+
+          // Otherwise, observe changes to root
+          const root = document.getElementById('root');
+          if (root) {
+            const observer = new MutationObserver((mutations) => {
+              for (const mutation of mutations) {
+                if (mutation.addedNodes.length > 0) {
+                  observer.disconnect();
+                  hideLoadingScreen();
+                  break;
+                }
+              }
+            });
+
+            observer.observe(root, { childList: true, subtree: true });
+          }
+        };
+
+        // Initialize
+        const init = () => {
+          // Show loading screen initially
+          showLoadingScreen();
+
+          // Try multiple methods to detect app load
+          
+          // Method 1: DOMContentLoaded
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', monitorReactLoad);
+          } else {
+            monitorReactLoad();
+          }
+
+          // Method 2: Load event (fallback)
+          window.addEventListener('load', () => {
+            setTimeout(monitorReactLoad, 100);
+          });
+
+          // Method 3: Maximum wait time (safety net)
+          setTimeout(() => {
+            if (!checkReactLoaded()) {
+              // Still not loaded, but we hide loading anyway to prevent infinite loading
+              hideLoadingScreen();
+            }
+          }, CONFIG.maxLoadTime);
+        };
+
+        // Start
+        init();
+
+        // Error handling for failed loading
+        window.addEventListener('error', function(event) {
+          // Don't hide loading on resource errors (images, etc)
+          if (event.target.tagName) return;
+          
+          // Show error message in loading screen
+          if (loadingElement) {
+            loadingElement.innerHTML = `
+              <div class="error-message" style="text-align: center; max-width: 400px; padding: 32px; background: #ffffff; border: 1px solid #eaeaea;">
+                <div style="font-size: 32px; margin-bottom: 16px; color: #111111;">⚠️</div>
+                <h2 style="font-size: 18px; font-weight: 500; color: #111111; margin: 16px 0 8px;">Connection Issue</h2>
+                <p style="font-size: 14px; color: #666666; margin-bottom: 20px;">Unable to load the application. Please check your connection.</p>
+                <button onclick="window.location.reload()" style="padding: 10px 24px; background: #111111; color: #ffffff; border: none; font-size: 14px; font-weight: 500; cursor: pointer;">
+                  Refresh Page
+                </button>
+              </div>
+            `;
+          }
+        });
+
+        // Clean up on page unload
+        window.addEventListener('beforeunload', function() {
+          if (loadingElement) {
+            loadingElement.style.display = 'flex';
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

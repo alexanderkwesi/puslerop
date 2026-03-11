@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="AdPulse Icon">
+  <defs>
+    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#00e5cc"/>
+      <stop offset="100%" stop-color="#00897b"/>
+    </linearGradient>
+    <radialGradient id="dotGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#00bfa5" stop-opacity="1"/>
+      <stop offset="55%"  stop-color="#00bfa5" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#00bfa5" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#ffca28"/>
+      <stop offset="100%" stop-color="#ffa000"/>
+    </linearGradient>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#0f2828"/>
+      <stop offset="100%" stop-color="#071a1a"/>
+    </linearGradient>
+    <linearGradient id="arcGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#00bfa5" stop-opacity="0.2"/>
+      <stop offset="50%"  stop-color="#00e5cc" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#00bfa5" stop-opacity="0.2"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="64" height="64" rx="14" fill="url(#bgGrad)"/>
+  <rect x="0" y="0" width="64" height="64" rx="14" fill="none" stroke="url(#tealGrad)" stroke-width="0.8" opacity="0.5"/>
+
+  <!-- Signal arcs -->
+  <path d="M 12 34 Q 32 6  52 34" fill="none" stroke="#00bfa5" stroke-width="1.5" stroke-linecap="round" opacity="0.15"/>
+  <path d="M 16 34 Q 32 12 48 34" fill="none" stroke="#00bfa5" stroke-width="1.8" stroke-linecap="round" opacity="0.35"/>
+  <path d="M 20 34 Q 32 18 44 34" fill="none" stroke="url(#arcGrad)" stroke-width="2.2" stroke-linecap="round" filter="url(#glow)"/>
+
+  <!-- EKG waveform -->
+  <polyline
+    points="5,44  14,44  17,44  19,38  21,52  24,32  27,50  30,44  59,44"
+    fill="none" stroke="url(#tealGrad)" stroke-width="1.8"
+    stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+
+  <!-- Centre pulse dot -->
+  <circle cx="32" cy="32" r="9" fill="url(#dotGlow)" opacity="0.4"/>
+  <circle cx="32" cy="32" r="3.5" fill="#00bfa5" filter="url(#glow)"/>
+  <circle cx="32" cy="32" r="1.8" fill="#eaf8f8"/>
+
+  <!-- Gold accent bar -->
+  <rect x="16" y="58" width="32" height="2.5" rx="1.25" fill="url(#goldGrad)" opacity="0.85"/>
+</svg>
